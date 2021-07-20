@@ -18,7 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BookAggregate\" />
+    <Folder Include="BookAggregate\Events\" />
+    <Folder Include="BookAggregate\Handlers\" />
+    <Folder Include="BookAggregate\Specifications\" />
   </ItemGroup>
 
 </Project>
