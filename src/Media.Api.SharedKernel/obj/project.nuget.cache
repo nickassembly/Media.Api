@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "g7MCent+q13DeyxWIn9YE0pxRFi/0taNajskUe/1kr3o19TgnccexZlFS+Pn7n27xdgLueD3o0CZ1Svbfzux/w==",
+  "success": true,
+  "projectFilePath": "D:\\source\\repos\\Dotnet\\Media.Api\\src\\Media.Api.SharedKernel\\Media.Api.SharedKernel.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\nickg\\.nuget\\packages\\ardalis.guardclauses\\3.1.0\\ardalis.guardclauses.3.1.0.nupkg.sha512",
+    "C:\\Users\\nickg\\.nuget\\packages\\ardalis.specification\\5.1.0\\ardalis.specification.5.1.0.nupkg.sha512",
+    "C:\\Users\\nickg\\.nuget\\packages\\jetbrains.annotations\\2019.1.3\\jetbrains.annotations.2019.1.3.nupkg.sha512",
+    "C:\\Users\\nickg\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
