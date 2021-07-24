@@ -42,8 +42,16 @@ namespace Media.Api.Core.BookAggregate
             SetUpdatedDate(updatedDate);
         }
 
-        private void SetIsbn(string isbn) => Isbn = Guard.Against.NullOrEmpty(isbn, nameof(isbn));
-        private void SetIsbn13(string isbn13) => Isbn13 = Guard.Against.NullOrEmpty(isbn13, nameof(isbn13));
+        private void SetIsbn(string isbn)
+        {
+            // TODO: Method to take out dashes so isbn only stores numbers
+            Isbn = Guard.Against.NullOrEmpty(isbn, nameof(isbn));
+        }
+        private void SetIsbn13(string isbn13)
+        {
+            Isbn13 = Guard.Against.NullOrEmpty(isbn13, nameof(isbn13));
+        }
+
         // TODO: how to guard against empty lists
         private void SetAuthors(List<string> authors)
         {
