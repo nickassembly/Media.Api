@@ -3,7 +3,7 @@ using Media.Api.Core.BookAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Media.Api.Infrastructure.Data.Config.BookAggregate
+namespace Media.Api.Infrastructure.Data.Config.AuthorAggregate
 {
     public class AuthorConfiguration : IEntityTypeConfiguration<Author>
     {
