@@ -2,6 +2,8 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Ardalis.EFCore.Extensions;
+using Media.Api.Core.AuthorAggregate;
+using Media.Api.Core.BookAggregate;
 using Media.Api.Core.ProjectAggregate;
 using Media.Api.SharedKernel;
 using MediatR;
@@ -23,8 +25,14 @@ namespace Media.Api.Infrastructure.Data
             _mediator = mediator;
         }
 
+        // TODO: Left in as examples, need to remove at some point
         public DbSet<ToDoItem> ToDoItems { get; set; }
         public DbSet<Project> Projects { get; set; }
+
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Author> Authors { get; set; }
+
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

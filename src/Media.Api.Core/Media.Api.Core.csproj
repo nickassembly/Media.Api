@@ -18,6 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="AuthorAggregate\Events\" />
+    <Folder Include="AuthorAggregate\Handlers\" />
+    <Folder Include="AuthorAggregate\Specifications\" />
     <Folder Include="BookAggregate\Events\" />
     <Folder Include="BookAggregate\Handlers\" />
   </ItemGroup>

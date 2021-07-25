@@ -1,11 +1,9 @@
 ﻿using Ardalis.GuardClauses;
+using Media.Api.Core.AuthorAggregate;
 using Media.Api.SharedKernel;
 using Media.Api.SharedKernel.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Media.Api.Core.BookAggregate
 {
@@ -13,7 +11,7 @@ namespace Media.Api.Core.BookAggregate
     {
         public string Isbn { get; private set; }
         public string Isbn13 { get; private set; }
-        public List<string> Authors { get; private set; }
+        public List<Author> Authors { get; private set; }
         public string Title { get; private set; }
         public MediaType MediaType { get; private set; }
         public string Publisher { get; private set; }
@@ -24,7 +22,12 @@ namespace Media.Api.Core.BookAggregate
         public DateTimeOffset CreatedDate { get; private set; }
         public DateTimeOffset UpdatedDate { get; private set; }
 
-        public Book(string isbn, string isbn13, List<string> authors, string title, MediaType mediaType,
+        public Book()
+        {
+
+        }
+
+        public Book(string isbn, string isbn13, List<Author> authors, string title, MediaType mediaType,
             string publisher, DateTimeOffset publishDate, decimal listPrice,
             Guid createdBy, Guid updatedBy, DateTimeOffset createdDate, DateTimeOffset updatedDate)
         {
@@ -53,7 +56,7 @@ namespace Media.Api.Core.BookAggregate
         }
 
         // TODO: how to guard against empty lists
-        private void SetAuthors(List<string> authors)
+        private void SetAuthors(List<Author> authors)
         {
             Authors.AddRange(authors);
         }
