@@ -28,34 +28,22 @@ namespace Media.Api.Web
 
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var dbContext = new AppDbContext(
-                serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>(), null))
-            {
-                // Look for any TODO items.
-                if (dbContext.ToDoItems.Any())
-                {
-                    return;   // DB has been seeded
-                }
-
-                PopulateTestData(dbContext);
-
-
-            }
+            using var dbContext = new AppDbContext(
+                serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>(), null);
+            PopulateTestData(dbContext);
         }
         public static void PopulateTestData(AppDbContext dbContext)
         {
-            foreach (var item in dbContext.ToDoItems)
+            if (!dbContext.Books.Any())
             {
-                dbContext.Remove(item);
+                PopulateBookData(dbContext);
             }
-            dbContext.SaveChanges();
 
-            TestProject1.AddItem(ToDoItem1);
-            TestProject1.AddItem(ToDoItem2);
-            TestProject1.AddItem(ToDoItem3);
-            dbContext.Projects.Add(TestProject1);
+            if (!dbContext.Authors.Any())
+            {
+                PopulateAuthorData(dbContext);
+            }
 
-            dbContext.SaveChanges();
         }
     }
 }
