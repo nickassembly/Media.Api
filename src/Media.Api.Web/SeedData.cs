@@ -32,6 +32,9 @@ namespace Media.Api.Web
                 serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>(), null);
             PopulateTestData(dbContext);
         }
+
+        // TODO: Either fix code below and create a seed data class for test data,
+        // or remove once some other testing solution is in place
         public static void PopulateTestData(AppDbContext dbContext)
         {
             if (!dbContext.Books.Any())
@@ -43,7 +46,24 @@ namespace Media.Api.Web
             {
                 PopulateAuthorData(dbContext);
             }
+        }
 
+        private static void PopulateBookData(AppDbContext dbContext)
+        {
+            //var data = BookData.ListTestNewsReleases();
+
+            //dbContext.Books.AddRange(data);
+
+            //dbContext.SaveChanges();
+        }
+
+        public static void PopulateAuthorData(AppDbContext dbContext)
+        {
+            //var data = AuthorData.ListTestEvents();
+
+            //dbContext.Authors.AddRange(data);
+
+            //dbContext.SaveChanges();
         }
     }
 }
