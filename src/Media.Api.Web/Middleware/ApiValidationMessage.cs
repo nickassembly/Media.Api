@@ -8,6 +8,7 @@ namespace Media.Api.Web.Middleware
 {
     public class ApiValidationMessage
     {
-        
+        public int? EntityId { get; set; }
+        public string Message { get; set; }
     }
 }
