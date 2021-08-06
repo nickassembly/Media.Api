@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace Media.Api.Web.Shared
 {
-    // TODO: Add logic 
-    public class BaseApiController
+    [Route("api/[controller]")]
+    [ApiController]
+    public abstract class BaseApiController : Controller
     {
         
     }

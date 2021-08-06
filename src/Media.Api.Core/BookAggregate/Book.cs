@@ -45,35 +45,35 @@ namespace Media.Api.Core.BookAggregate
             SetUpdatedDate(updatedDate);
         }
 
-        private void SetIsbn(string isbn)
+        public void SetIsbn(string isbn)
         {
             // TODO: Method to take out dashes so isbn only stores numbers
             Isbn = Guard.Against.NullOrEmpty(isbn, nameof(isbn));
         }
-        private void SetIsbn13(string isbn13)
+        public void SetIsbn13(string isbn13)
         {
             Isbn13 = Guard.Against.NullOrEmpty(isbn13, nameof(isbn13));
         }
 
         // TODO: how to guard against empty lists
-        private void SetAuthors(List<Author> authors)
+        public void SetAuthors(List<Author> authors)
         {
             Authors.AddRange(authors);
         }
-        private void SetTitle(string title) => Title = Guard.Against.NullOrEmpty(title, nameof(title));
-        private void SetMediaType(MediaType mediaType)
+        public void SetTitle(string title) => Title = Guard.Against.NullOrEmpty(title, nameof(title));
+        public void SetMediaType(MediaType mediaType)
         {
             MediaType = Guard.Against.InvalidInput(mediaType, nameof(mediaType), mt => Enum.IsDefined(mediaType));
         }
 
-        private void SetPublisher(string publisher) => Publisher = Guard.Against.NullOrEmpty(publisher, nameof(publisher));
+        public void SetPublisher(string publisher) => Publisher = Guard.Against.NullOrEmpty(publisher, nameof(publisher));
 
-        private void SetPublishDate(DateTimeOffset publishDate) => Guard.Against.Null(publishDate, nameof(publishDate));
-        private void SetListPrice(decimal listPrice) => Guard.Against.Null(listPrice, nameof(listPrice));
-        private void SetCreatedBy(Guid createdBy) => Guard.Against.Null(createdBy, nameof(createdBy));
-        private void SetUpdatedBy(Guid updatedBy) => Guard.Against.Null(updatedBy, nameof(updatedBy));
-        private void SetCreatedDate(DateTimeOffset createdDate) => Guard.Against.Null(createdDate, nameof(createdDate));
-        private void SetUpdatedDate(DateTimeOffset updatedDate) => Guard.Against.Null(updatedDate, nameof(updatedDate));
+        public void SetPublishDate(DateTimeOffset publishDate) => Guard.Against.Null(publishDate, nameof(publishDate));
+        public void SetListPrice(decimal listPrice) => Guard.Against.Null(listPrice, nameof(listPrice));
+        public void SetCreatedBy(Guid createdBy) => Guard.Against.Null(createdBy, nameof(createdBy));
+        public void SetUpdatedBy(Guid updatedBy) => Guard.Against.Null(updatedBy, nameof(updatedBy));
+        public void SetCreatedDate(DateTimeOffset createdDate) => Guard.Against.Null(createdDate, nameof(createdDate));
+        public void SetUpdatedDate(DateTimeOffset updatedDate) => Guard.Against.Null(updatedDate, nameof(updatedDate));
 
     }
 }

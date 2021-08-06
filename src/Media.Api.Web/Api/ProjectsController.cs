@@ -5,6 +5,7 @@ using Media.Api.Core.ProjectAggregate;
 using Media.Api.Core.ProjectAggregate.Specifications;
 using Media.Api.SharedKernel.Interfaces;
 using Media.Api.Web.ApiModels;
+using Media.Api.Web.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Media.Api.Web.Api

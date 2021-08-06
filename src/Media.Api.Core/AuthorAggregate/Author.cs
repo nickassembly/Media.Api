@@ -24,12 +24,12 @@ namespace Media.Api.Core.AuthorAggregate
             SetLastName(lastName);
         }
 
-        private void SetFirstName(string firstName)
+        public void SetFirstName(string firstName)
         {
             FirstName = Guard.Against.NullOrEmpty(firstName, nameof(firstName));
         }
 
-        private void SetLastName(string lastName)
+        public void SetLastName(string lastName)
         {
             LastName = Guard.Against.NullOrEmpty(lastName, nameof(lastName));
         }
