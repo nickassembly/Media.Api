@@ -10,13 +10,13 @@ namespace Media.Api.Web.Middleware.Exceptions
 {
     public class ApiExceptionBase : Exception
     {
-        public HttpStatusCode StatusCode { get; set; }
+        public int StatusCode { get; set; }
         public string UserFriendlyMessage { get; set; }
 
         protected ApiExceptionBase(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
         public ApiExceptionBase(
-            HttpStatusCode statusCode = HttpStatusCode.BadRequest,
+            int statusCode = (int)HttpStatusCode.BadRequest,
             string message = null,
             string userFriendlyMessage = null,
             Exception innerException = null) : base(message, innerException)

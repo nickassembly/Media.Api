@@ -13,8 +13,6 @@ namespace Media.Api.Web.Middleware
         public bool IsSuccess { get; set; }
         public object Result { get; set; }
 
-        public List<ApiValidationMessage> ValidationMessages { get; set; } = new List<ApiValidationMessage>();
-
         public ApiResponse(int statusCode, object result = null, string errorMessage = null)
         {
             StatusCode = statusCode;
