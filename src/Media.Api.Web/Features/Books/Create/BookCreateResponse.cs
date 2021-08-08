@@ -8,6 +8,6 @@ namespace Media.Api.Web.Features.Books.Create
 {
     public class BookCreateResponse
     {
-        
+        public int Id { get; set; }
     }
 }

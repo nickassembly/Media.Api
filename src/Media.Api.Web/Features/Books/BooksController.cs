@@ -1,4 +1,5 @@
-﻿using Media.Api.Web.Shared;
+﻿using Media.Api.Web.Features.Books.Create;
+using Media.Api.Web.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
@@ -18,6 +19,9 @@ namespace Media.Api.Web.Features.Books
         {
             _mediator = mediator;
         }
+
+        // TODO: Test Create method
+        // Add integration and unit tests, seed data? 
 
         // POST: api/Books/
         [HttpPost]
