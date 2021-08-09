@@ -3,6 +3,7 @@ using Ardalis.ListStartupServices;
 using Autofac;
 using Media.Api.Core;
 using Media.Api.Infrastructure;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -26,6 +27,9 @@ namespace Media.Api.Web
 
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services.AddMediatR(typeof(Startup).Assembly);
+			services.AddAutoMapper(typeof(Startup).Assembly);
+
 			services.Configure<CookiePolicyOptions>(options =>
 			{
 				options.CheckConsentNeeded = context => true;
@@ -52,6 +56,7 @@ namespace Media.Api.Web
 				// optional - default path to view services is /listallservices - recommended to choose your own path
 				config.Path = "/listservices";
 			});
+
 		}
 
 		public void ConfigureContainer(ContainerBuilder builder)
