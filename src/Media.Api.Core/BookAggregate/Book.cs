@@ -11,7 +11,7 @@ namespace Media.Api.Core.BookAggregate
     {
         public string Isbn { get; private set; }
         public string Isbn13 { get; private set; }
-       // public List<Author> Authors { get; private set; }
+        public List<Author> Authors { get; private set; }
         public string Title { get; private set; }
         public MediaType MediaType { get; private set; }
         public string Publisher { get; private set; }
@@ -27,7 +27,7 @@ namespace Media.Api.Core.BookAggregate
 
         }
         // TODO: Fix author and swagger layout 
-        public Book(string isbn, string isbn13, /*List<Author> authors,*/ string title, MediaType mediaType,
+        public Book(string isbn, string isbn13, List<Author> authors, string title, MediaType mediaType,
             string publisher, DateTimeOffset publishDate, decimal listPrice,
             Guid createdBy, Guid updatedBy, DateTimeOffset createdDate, DateTimeOffset updatedDate)
         {
@@ -35,7 +35,7 @@ namespace Media.Api.Core.BookAggregate
             SetIsbn13(isbn13);
             SetTitle(title);
             SetMediaType(mediaType);
-          // SetAuthors(authors);
+            SetAuthors(authors);
             SetPublisher(publisher);
             SetPublishDate(publishDate);
             SetListPrice(listPrice);
@@ -55,11 +55,13 @@ namespace Media.Api.Core.BookAggregate
             Isbn13 = Guard.Against.NullOrEmpty(isbn13, nameof(isbn13));
         }
 
-        // TODO: how to guard against empty lists
-        //public void SetAuthors(List<Author> authors)
-        //{
-        //    Authors.AddRange(authors);
-        //}
+        // TODO: How to handle creating an object with a list of different objects?
+
+        public void SetAuthors(List<Author> authors)
+        {
+            Authors = authors;
+        }
+
         public void SetTitle(string title) => Title = Guard.Against.NullOrEmpty(title, nameof(title));
         public void SetMediaType(MediaType mediaType)
         {
