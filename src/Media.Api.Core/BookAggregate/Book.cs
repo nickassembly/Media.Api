@@ -26,8 +26,8 @@ namespace Media.Api.Core.BookAggregate
         {
 
         }
-        // TODO: Fix author and swagger layout 
-        public Book(string isbn, string isbn13, List<Author> authors, string title, MediaType mediaType,
+
+        public Book(string isbn, string isbn13, string title, MediaType mediaType,
             string publisher, DateTimeOffset publishDate, decimal listPrice,
             Guid createdBy, Guid updatedBy, DateTimeOffset createdDate, DateTimeOffset updatedDate)
         {
@@ -35,7 +35,6 @@ namespace Media.Api.Core.BookAggregate
             SetIsbn13(isbn13);
             SetTitle(title);
             SetMediaType(mediaType);
-            SetAuthors(authors);
             SetPublisher(publisher);
             SetPublishDate(publishDate);
             SetListPrice(listPrice);
@@ -43,6 +42,8 @@ namespace Media.Api.Core.BookAggregate
             SetCreatedDate(createdDate);
             SetUpdatedBy(updatedBy);
             SetUpdatedDate(updatedDate);
+
+            this.Authors = new List<Author>();
         }
 
         public void SetIsbn(string isbn)
@@ -55,13 +56,6 @@ namespace Media.Api.Core.BookAggregate
             Isbn13 = Guard.Against.NullOrEmpty(isbn13, nameof(isbn13));
         }
 
-        // TODO: How to handle creating an object with a list of different objects?
-
-        public void SetAuthors(List<Author> authors)
-        {
-            Authors = authors;
-        }
-
         public void SetTitle(string title) => Title = Guard.Against.NullOrEmpty(title, nameof(title));
         public void SetMediaType(MediaType mediaType)
         {
@@ -69,7 +63,6 @@ namespace Media.Api.Core.BookAggregate
         }
 
         public void SetPublisher(string publisher) => Publisher = Guard.Against.NullOrEmpty(publisher, nameof(publisher));
-
         public void SetPublishDate(DateTimeOffset publishDate) => Guard.Against.Null(publishDate, nameof(publishDate));
         public void SetListPrice(decimal listPrice) => Guard.Against.Null(listPrice, nameof(listPrice));
         public void SetCreatedBy(Guid createdBy) => Guard.Against.Null(createdBy, nameof(createdBy));

@@ -25,10 +25,6 @@ namespace Media.Api.Infrastructure.Data
             _mediator = mediator;
         }
 
-        // TODO: Left in as examples, need to remove at some point
-        //public DbSet<ToDoItem> ToDoItems { get; set; }
-        //public DbSet<Project> Projects { get; set; }
-
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
 
@@ -37,6 +33,11 @@ namespace Media.Api.Infrastructure.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.ApplyAllConfigurationsFromCurrentAssembly();
+
+            modelBuilder.Entity<Book>()
+                .HasMany<Author>(a => a.Authors)
+                .WithMany(b => b.Books);
+
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

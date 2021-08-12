@@ -1,4 +1,5 @@
 ﻿using Ardalis.GuardClauses;
+using Media.Api.Core.BookAggregate;
 using Media.Api.SharedKernel;
 using Media.Api.SharedKernel.Interfaces;
 using System;
@@ -14,6 +15,8 @@ namespace Media.Api.Core.AuthorAggregate
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
 
+        public List<Book> Books { get; private set; }
+
         public Author()
         {
 
@@ -22,6 +25,8 @@ namespace Media.Api.Core.AuthorAggregate
         {
             SetFirstName(firstName);
             SetLastName(lastName);
+
+            this.Books = new List<Book>();
         }
 
         public void SetFirstName(string firstName)
