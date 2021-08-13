@@ -34,7 +34,6 @@
   <ItemGroup>
     <Folder Include="Features\Authors\" />
     <Folder Include="Features\Books\Delete\" />
-    <Folder Include="Features\Books\GetById\" />
     <Folder Include="Features\Books\List\" />
     <Folder Include="Features\Books\Update\" />
   </ItemGroup>
