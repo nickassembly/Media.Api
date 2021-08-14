@@ -10,7 +10,7 @@ namespace Media.Api.Web.Features.Books.GetById
     {
         public int StatusCode { get; set; }
         public bool IsSuccess { get; set; }
-        public object Result { get; set; } // TODO: What does result object look like?
+        public BookGetByIdApiModel Result { get; set; } 
         public string ToastMessage { get; set; }
         public string ErrorMessage { get; set; }
 
