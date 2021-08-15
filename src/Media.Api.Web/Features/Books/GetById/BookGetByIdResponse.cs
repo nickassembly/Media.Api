@@ -10,7 +10,7 @@ namespace Media.Api.Web.Features.Books.GetById
     {
         public int StatusCode { get; set; }
         public bool IsSuccess { get; set; }
-        public BookGetByIdApiModel Result { get; set; } 
+        public BookGetByIdApiModel BookResult { get; set; } 
         public string ToastMessage { get; set; }
         public string ErrorMessage { get; set; }
 

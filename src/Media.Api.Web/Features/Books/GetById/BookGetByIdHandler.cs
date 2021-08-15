@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Media.Api.Web.Features.Books.GetById
@@ -21,6 +22,17 @@ namespace Media.Api.Web.Features.Books.GetById
             _mapper = mapper;
         }
 
+        public async Task<BookGetByIdResponse> Handle(BookGetByIdRequest request, CancellationToken cancellationToken)
+        {
+            BookGetByIdResponse response = new();
 
+            var book = await _repo.GetByIdAsync(request.Id, cancellationToken);
+
+            if (book == null) return response;
+
+            response.BookResult = _mapper.Map<BookGetByIdApiModel>(book);
+
+            return response;
+        }
     }
 }
