@@ -1,4 +1,5 @@
 ﻿using Media.Api.Web.Features.Books.Create;
+using Media.Api.Web.Features.Books.GetById;
 using Media.Api.Web.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,8 +21,7 @@ namespace Media.Api.Web.Features.Books
             _mediator = mediator;
         }
 
-        // TODO: Test Create method
-        // Add integration and unit tests, seed data? 
+        // TODO: Test Post and Get by Id
 
         // POST: api/Books/
         [HttpPost]
@@ -36,5 +36,21 @@ namespace Media.Api.Web.Features.Books
 
             return Ok(response.Id);
         }
+
+        // GET: api/Books/{id}
+        [HttpGet("{id}")]
+        [SwaggerOperation(
+            Summary = "Get a book by id",
+            Description = "Get the details of a book",
+            OperationId = "Books.GetById",
+            Tags = new[] {"Books "})]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var response = await _mediator.Send(new BookGetByIdRequest { Id = id });
+
+            return response.BookResult == null ? NotFound() : Ok(response.BookResult);
+        }
+
+
     }
 }
