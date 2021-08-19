@@ -12,7 +12,7 @@ namespace Media.Api.Web.Features.Books.GetById
     {
         public BookGetByIdProfile()
         {
-            CreateMap<BookGetByIdRequest, Book>();
+            CreateMap<Book, BookGetByIdApiModel>();
         }
     }
 }
