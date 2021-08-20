@@ -21,7 +21,10 @@ namespace Media.Api.Web.Features.Books
             _mediator = mediator;
         }
 
-        // TODO: Test Post and Get by Id
+        // GET: api/books/
+        // TODO: list books
+
+
 
         // POST: api/Books/
         [HttpPost]
@@ -43,7 +46,7 @@ namespace Media.Api.Web.Features.Books
             Summary = "Get a book by id",
             Description = "Get the details of a book",
             OperationId = "Books.GetById",
-            Tags = new[] {"Books "})]
+            Tags = new[] { "Books " })]
         public async Task<IActionResult> GetById(int id)
         {
             var response = await _mediator.Send(new BookGetByIdRequest { Id = id });
