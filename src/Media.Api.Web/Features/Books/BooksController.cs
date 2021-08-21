@@ -1,5 +1,6 @@
 ﻿using Media.Api.Web.Features.Books.Create;
 using Media.Api.Web.Features.Books.GetById;
+using Media.Api.Web.Features.Books.List;
 using Media.Api.Web.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +22,20 @@ namespace Media.Api.Web.Features.Books
             _mediator = mediator;
         }
 
+        // TODO: Test list method
         // GET: api/books/
-        // TODO: list books
+        [HttpGet]
+        [SwaggerOperation(
+            Summary = "List books",
+            Description = "Get a list of books",
+            OperationId = "Books.List",
+            Tags = new[] {"books"})]
+        public async Task<IActionResult> List()
+        {
+            var response = await _mediator.Send(new BookListRequest() { MediaType = null });
+
+            return response.Books == null ? NotFound() : Ok(response.Books);
+        }
 
 
 
