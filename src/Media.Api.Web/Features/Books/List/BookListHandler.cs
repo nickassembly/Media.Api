@@ -3,10 +3,8 @@ using Media.Api.Core.BookAggregate;
 using Media.Api.Core.BookAggregate.Specifications;
 using Media.Api.SharedKernel.Interfaces;
 using MediatR;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,9 +25,9 @@ namespace Media.Api.Web.Features.Books.List
         {
             BookListResponse response = new();
             var books = new List<Book>();
-            
+
             if (request.MediaType == null)
-                await _repo.ListAsync(cancellationToken);
+                books = await _repo.ListAsync(cancellationToken);
             else
             {
                 ListByMediaTypeSpec spec = new(request.MediaType);

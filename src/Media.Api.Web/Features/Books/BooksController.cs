@@ -5,10 +5,6 @@ using Media.Api.Web.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Media.Api.Web.Features.Books
@@ -22,7 +18,6 @@ namespace Media.Api.Web.Features.Books
             _mediator = mediator;
         }
 
-        // TODO: Test list method
         // GET: api/books/
         [HttpGet]
         [SwaggerOperation(
@@ -36,8 +31,6 @@ namespace Media.Api.Web.Features.Books
 
             return response.Books == null ? NotFound() : Ok(response.Books);
         }
-
-
 
         // POST: api/Books/
         [HttpPost]
