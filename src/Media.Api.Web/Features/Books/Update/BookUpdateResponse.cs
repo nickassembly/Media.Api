@@ -8,6 +8,7 @@ namespace Media.Api.Web.Features.Books.Update
 {
     public class BookUpdateResponse
     {
-        
+        public int Id { get; set; }
+        public string StatusCode { get; set; }
     }
 }

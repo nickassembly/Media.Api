@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AutoMapper;
+using Media.Api.Core.BookAggregate;
 
 namespace Media.Api.Web.Features.Books.Update
 {
-    public class BookUpdateProfile
+    public class BookUpdateProfile : Profile
     {
-        
+        public BookUpdateProfile()
+        {
+            CreateMap<BookUpdateRequest, Book>();
+            CreateMap<Book, BookUpdateRequest>();
+
+        }
     }
 }
