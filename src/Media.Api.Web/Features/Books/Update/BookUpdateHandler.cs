@@ -22,9 +22,21 @@ namespace Media.Api.Web.Features.Books.Update
             _mapper = mapper;
         }
 
-        public Task<BookUpdateResponse> Handle(BookUpdateRequest request, CancellationToken cancellationToken)
+        public async Task<BookUpdateResponse> Handle(BookUpdateRequest request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            BookUpdateResponse response = new() { Id = request.Id, StatusCode = "NotFound" };
+
+            var bookToEdit = await _repo.GetByIdAsync(request.Id, cancellationToken);
+
+            if (bookToEdit == null) return response;
+
+            _mapper.Map(request, bookToEdit);
+
+            await _repo.SaveChangesAsync(cancellationToken);
+            
+            response.StatusCode = "Updated";
+
+            return response;
         }
     }
 }

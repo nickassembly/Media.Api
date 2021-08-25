@@ -11,6 +11,7 @@ namespace Media.Api.Web.Features.Books.Update
 {
     public class BookUpdateRequest : IRequest<BookUpdateResponse>
     {
+        public int Id { get; set; }
         public string Isbn { get; private set; }
         public string Isbn13 { get; private set; }
         public List<Author> Authors { get; private set; }
