@@ -1,6 +1,7 @@
 ﻿using Media.Api.Web.Features.Books.Create;
 using Media.Api.Web.Features.Books.GetById;
 using Media.Api.Web.Features.Books.List;
+using Media.Api.Web.Features.Books.Update;
 using Media.Api.Web.Shared;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -44,6 +45,20 @@ namespace Media.Api.Web.Features.Books
             var response = await _mediator.Send(request);
 
             return Ok(response.Id);
+        }
+
+        // PUT: api/Books/
+        [HttpPut]
+        [SwaggerOperation(
+            Summary = "Updates an fields in existing book",
+            Description = "Update an a book",
+            OperationId = "Books.Update",
+            Tags = new [] {"Books"})]
+        public async Task<IActionResult> Update([FromBody] BookUpdateRequest request)
+        {
+            var response = await _mediator.Send(request);
+
+            return response.StatusCode == "NotFound" ? NotFound(response.Id) : Ok(response.Id);
         }
 
         // GET: api/Books/{id}
