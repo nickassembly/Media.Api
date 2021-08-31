@@ -3,6 +3,7 @@ using Ardalis.ListStartupServices;
 using Autofac;
 using Media.Api.Core;
 using Media.Api.Infrastructure;
+using Media.Api.Web.Middleware;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -83,6 +84,10 @@ namespace Media.Api.Web
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
+
+			app.UseFirstMiddleware();
+			app.UseSecondMiddleware();
+			app.UseLastMiddleware();
 
 			// Enable middleware to serve generated Swagger as a JSON endpoint.
 			app.UseSwagger();
