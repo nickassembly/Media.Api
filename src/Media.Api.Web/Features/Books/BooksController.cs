@@ -75,6 +75,9 @@ namespace Media.Api.Web.Features.Books
             return response.BookResult == null ? NotFound() : Ok(response.BookResult);
         }
 
+        // DELETE: api/Books/{id}
+        // Add delete method and test complete CRUD
+
 
     }
 }
