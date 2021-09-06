@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Media.Api.Web.Features.Books.Delete
 {
-    public class DeleteBookHandler : IRequestHandler<DeleteBookRequest, DeleteBookResponse>
+    public class BookDeleteHandler : IRequestHandler<BookDeleteRequest, BookDeleteResponse>
     {
         private readonly IRepository<Book> _repo;
 
-        public async Task<DeleteBookResponse> Handle(DeleteBookRequest request, CancellationToken cancellationToken)
+        public async Task<BookDeleteResponse> Handle(BookDeleteRequest request, CancellationToken cancellationToken)
         {
-            var response = new DeleteBookResponse() { Id = request.Id };
+            var response = new BookDeleteResponse() { Id = request.Id };
 
             var bookToBeDeleted = await _repo.GetByIdAsync(request.Id, cancellationToken);
 

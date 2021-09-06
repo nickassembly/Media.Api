@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 
 namespace Media.Api.Web.Features.Books.Delete
 {
-    public class DeleteBookRequest : IRequest<DeleteBookResponse>
+    public class BookDeleteResponse : IRequest<BookDeleteResponse>
     {
         public int Id { get; set; }
+        public bool IsSuccess { get; set; }
+        public string ToastMessage { get; set; }
+        public string ErrorMessage { get; set; }
+
     }
 }

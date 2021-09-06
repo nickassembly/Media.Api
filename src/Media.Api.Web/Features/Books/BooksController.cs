@@ -1,4 +1,5 @@
 ﻿using Media.Api.Web.Features.Books.Create;
+using Media.Api.Web.Features.Books.Delete;
 using Media.Api.Web.Features.Books.GetById;
 using Media.Api.Web.Features.Books.List;
 using Media.Api.Web.Features.Books.Update;
@@ -58,6 +59,7 @@ namespace Media.Api.Web.Features.Books
         {
             var response = await _mediator.Send(request);
 
+            // TODO: unify response object properties
             return response.StatusCode == "NotFound" ? NotFound(response.Id) : Ok(response.Id);
         }
 
@@ -76,7 +78,19 @@ namespace Media.Api.Web.Features.Books
         }
 
         // DELETE: api/Books/{id}
-        // Add delete method and test complete CRUD
+        [HttpDelete("{id}")]
+        [SwaggerOperation(
+          Summary = "Delete a book",
+            Description = "Remove a book",
+            OperationId = "Books.Delete",
+            Tags = new[] { "Books" })]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var response = await _mediator.Send(new BookDeleteRequest() { Id = id });
+
+            return !response.IsSuccess ? NotFound(response.Id) : Ok(response.Id);
+        }
+
 
 
     }
