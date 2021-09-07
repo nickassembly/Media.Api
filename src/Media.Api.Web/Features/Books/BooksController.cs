@@ -88,7 +88,7 @@ namespace Media.Api.Web.Features.Books
         {
             var response = await _mediator.Send(new BookDeleteRequest() { Id = id });
 
-            return !response.IsSuccess ? NotFound(response.Id) : Ok(response.Id);
+            return !response.IsSuccess ? NotFound() : Ok(response.Id);
         }
 
 

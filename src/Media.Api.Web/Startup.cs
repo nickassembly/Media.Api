@@ -85,9 +85,9 @@ namespace Media.Api.Web
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
 
-			app.UseFirstMiddleware();
-			app.UseSecondMiddleware();
-			app.UseLastMiddleware();
+			//app.UseFirstMiddleware();
+			//app.UseSecondMiddleware();
+			//app.UseLastMiddleware();
 
 			// Enable middleware to serve generated Swagger as a JSON endpoint.
 			app.UseSwagger();

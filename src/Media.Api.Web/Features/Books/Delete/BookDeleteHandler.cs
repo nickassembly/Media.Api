@@ -10,6 +10,11 @@ namespace Media.Api.Web.Features.Books.Delete
     {
         private readonly IRepository<Book> _repo;
 
+        public BookDeleteHandler(IRepository<Book> repo)
+        {
+            _repo = repo;
+        }
+
         public async Task<BookDeleteResponse> Handle(BookDeleteRequest request, CancellationToken cancellationToken)
         {
             var response = new BookDeleteResponse() { Id = request.Id };
