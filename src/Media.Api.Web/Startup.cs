@@ -62,7 +62,6 @@ namespace Media.Api.Web
 
 		public void ConfigureContainer(ContainerBuilder builder)
 		{
-			builder.RegisterModule(new DefaultCoreModule());
 			builder.RegisterModule(new DefaultInfrastructureModule(_env.EnvironmentName == "Development"));
 		}
 

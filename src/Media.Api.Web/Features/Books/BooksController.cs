@@ -20,13 +20,13 @@ namespace Media.Api.Web.Features.Books
             _mediator = mediator;
         }
 
-        // GET: api/books/
+        // GET: api/Books/
         [HttpGet]
         [SwaggerOperation(
             Summary = "List books",
             Description = "Get a list of books",
             OperationId = "Books.List",
-            Tags = new[] {"books"})]
+            Tags = new[] {"Books"})]
         public async Task<IActionResult> List()
         {
             var response = await _mediator.Send(new BookListRequest() { MediaType = null });
@@ -39,8 +39,7 @@ namespace Media.Api.Web.Features.Books
         [SwaggerOperation(
             Summary = "Create a book",
             Description = "Add a new book",
-            OperationId = "Books.Create",
-            Tags = new[] { "Books" })]
+            OperationId = "Books.Create")]
         public async Task<IActionResult> Create([FromBody] BookCreateRequest request)
         {
             var response = await _mediator.Send(request);
@@ -48,18 +47,17 @@ namespace Media.Api.Web.Features.Books
             return Ok(response.Id);
         }
 
+        // TODO: Fix update, getting null reference on Isbn13
         // PUT: api/Books/
         [HttpPut]
         [SwaggerOperation(
             Summary = "Updates an fields in existing book",
             Description = "Update an a book",
-            OperationId = "Books.Update",
-            Tags = new [] {"Books"})]
+            OperationId = "Books.Update")]
         public async Task<IActionResult> Update([FromBody] BookUpdateRequest request)
         {
             var response = await _mediator.Send(request);
 
-            // TODO: unify response object properties
             return response.StatusCode == "NotFound" ? NotFound(response.Id) : Ok(response.Id);
         }
 
@@ -68,8 +66,7 @@ namespace Media.Api.Web.Features.Books
         [SwaggerOperation(
             Summary = "Get a book by id",
             Description = "Get the details of a book",
-            OperationId = "Books.GetById",
-            Tags = new[] { "Books " })]
+            OperationId = "Books.GetById")]
         public async Task<IActionResult> GetById(int id)
         {
             var response = await _mediator.Send(new BookGetByIdRequest { Id = id });
@@ -82,8 +79,7 @@ namespace Media.Api.Web.Features.Books
         [SwaggerOperation(
           Summary = "Delete a book",
             Description = "Remove a book",
-            OperationId = "Books.Delete",
-            Tags = new[] { "Books" })]
+            OperationId = "Books.Delete")]
         public async Task<IActionResult> Delete(int id)
         {
             var response = await _mediator.Send(new BookDeleteRequest() { Id = id });

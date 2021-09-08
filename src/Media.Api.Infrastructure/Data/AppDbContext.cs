@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Ardalis.EFCore.Extensions;
 using Media.Api.Core.AuthorAggregate;
 using Media.Api.Core.BookAggregate;
-using Media.Api.Core.ProjectAggregate;
 using Media.Api.SharedKernel;
 using MediatR;
 using Microsoft.EntityFrameworkCore;

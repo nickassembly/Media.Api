@@ -23,6 +23,8 @@
     <Folder Include="AuthorAggregate\Specifications\" />
     <Folder Include="BookAggregate\Events\" />
     <Folder Include="BookAggregate\Handlers\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Reflection;
 using Autofac;
-using Media.Api.Core.Interfaces;
-using Media.Api.Core.ProjectAggregate;
 using Media.Api.Infrastructure.Data;
 using Media.Api.SharedKernel.Interfaces;
 using MediatR;
@@ -19,9 +17,7 @@ namespace Media.Api.Infrastructure
         public DefaultInfrastructureModule(bool isDevelopment, Assembly callingAssembly =  null)
         {
             _isDevelopment = isDevelopment;
-            var coreAssembly = Assembly.GetAssembly(typeof(Project)); // TODO: Replace "Project" with any type from your Core project
             var infrastructureAssembly = Assembly.GetAssembly(typeof(StartupSetup));
-            _assemblies.Add(coreAssembly);
             _assemblies.Add(infrastructureAssembly);
             if (callingAssembly != null)
             {
@@ -75,9 +71,6 @@ namespace Media.Api.Infrastructure
                 .AsClosedTypesOf(mediatrOpenType)
                 .AsImplementedInterfaces();
             }
-
-            builder.RegisterType<EmailSender>().As<IEmailSender>()
-                .InstancePerLifetimeScope();
         }
 
         private void RegisterDevelopmentOnlyDependencies(ContainerBuilder builder)
