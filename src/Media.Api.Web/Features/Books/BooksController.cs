@@ -47,7 +47,6 @@ namespace Media.Api.Web.Features.Books
             return Ok(response.Id);
         }
 
-        // TODO: Fix update, getting null reference on Isbn13
         // PUT: api/Books/
         [HttpPut]
         [SwaggerOperation(

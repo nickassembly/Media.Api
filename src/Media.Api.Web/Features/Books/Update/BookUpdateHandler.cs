@@ -24,19 +24,11 @@ namespace Media.Api.Web.Features.Books.Update
 
         public async Task<BookUpdateResponse> Handle(BookUpdateRequest request, CancellationToken cancellationToken)
         {
-            BookUpdateResponse response = new() { Id = request.Id, StatusCode = "NotFound" };
+            var book = _mapper.Map<Book>(request.BookUpdateCommand);
 
-            var bookToEdit = await _repo.GetByIdAsync(request.Id, cancellationToken);
+            await _repo.UpdateAsync(book, cancellationToken);
 
-            if (bookToEdit == null) return response;
-
-            _mapper.Map(request, bookToEdit);
-
-            await _repo.SaveChangesAsync(cancellationToken);
-            
-            response.StatusCode = "Updated";
-
-            return response;
+            return _mapper.Map<BookUpdateResponse>(new Book() { Id = book.Id });
         }
     }
 }

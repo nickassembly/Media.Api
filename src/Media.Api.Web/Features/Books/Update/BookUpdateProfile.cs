@@ -7,8 +7,8 @@ namespace Media.Api.Web.Features.Books.Update
     {
         public BookUpdateProfile()
         {
-            CreateMap<BookUpdateRequest, Book>();
-            CreateMap<Book, BookUpdateRequest>();
+            CreateMap<BookUpdateCommand, Book>();
+            CreateMap<Book, BookUpdateResponse>();
 
         }
     }
