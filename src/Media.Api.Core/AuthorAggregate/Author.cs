@@ -2,20 +2,16 @@
 using Media.Api.Core.BookAggregate;
 using Media.Api.SharedKernel;
 using Media.Api.SharedKernel.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Media.Api.Core.AuthorAggregate
 {
     public class Author : BaseEntity, IAggregateRoot
     {
-        public string FirstName { get; private set; }
-        public string LastName { get; private set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-        public List<Book> Books { get; private set; }
+        public List<Book> Books { get; set; }
 
         public Author()
         {

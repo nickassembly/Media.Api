@@ -84,6 +84,7 @@ namespace Media.Api.Web
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
 
+			// TODO: Refactor middleware 
 			//app.UseFirstMiddleware();
 			//app.UseSecondMiddleware();
 			//app.UseLastMiddleware();

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Media.Api.Core.BookAggregate;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace Media.Api.Web.Features.Books.Create
     public class BookCreateResponse
     {
         public int Id { get; set; }
+        public Book Book { get; set; }
         public bool IsSuccess { get; set; }
         public string ToastMessage { get; set; }
         public string ErrorMessage { get; set; }
