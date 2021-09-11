@@ -82,26 +82,24 @@ namespace Media.Api.Web
 
             // Experimenting with Middleware in this section (extension method calls below)
             // Use will pass the request to the next, which must be passed in as a parameter
-            //app.Use(async (context, next) => 
-            //{ 
-            //    Console.WriteLine("Middleware 1 Started");
-            //    await context.Response.WriteAsync("This is the first middleware 1");
-            //    await next();
-            //    Console.WriteLine("Middleware 1 Ended");
-            //});
+            app.Use(async (context, next) =>
+            {
+                Console.WriteLine("Middleware 1 Started");
+                await context.Response.WriteAsync("This is the first middleware 1");
+                await next();
+                Console.WriteLine("Middleware 1 Ended");
+            });
 
-            //app.Use(async (context, next) =>
-            //{
-            //    Console.WriteLine("\nMiddleware 2 Started");
-            //    await context.Response.WriteAsync("\nThis is the second middleware 2");
-            //    await next();
-            //    Console.WriteLine("Middleware 2 Ended");
-            //});
+            app.Use(async (context, next) =>
+            {
+                Console.WriteLine("\nMiddleware 2 Started");
+                await context.Response.WriteAsync("\nThis is the second middleware 2");
+                await next();
+                Console.WriteLine("Middleware 2 Ended");
+            });
 
-            //// Run is a terminal delegate, does NOT pass the request to the Next delegate
-            //app.Run(async c => await c.Response.WriteAsync("\nWelcome to terminal middleware"));
-          
-
+            // Run is a terminal delegate, does NOT pass the request to the Next delegate
+            app.Run(async c => await c.Response.WriteAsync("\nWelcome to terminal middleware"));
 
             //app.UseFirstMiddleware();
             //app.UseSecondMiddleware();
