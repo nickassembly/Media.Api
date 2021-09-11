@@ -34,17 +34,17 @@ namespace Media.Api.Web.Features.Books
             return response.Books == null ? NotFound() : Ok(response.Books);
         }
 
-        // POST: api/Books/
+        // POST: api/Books/Create
         [HttpPost]
         [SwaggerOperation(
             Summary = "Create a book",
             Description = "Add a new book",
             OperationId = "Books.Create")]
-        public async Task<IActionResult> Create([FromBody] BookCreateRequest request)
+        public async Task<IActionResult> Create([FromBody] BookCreateCommand book)
         {
-            var response = await _mediator.Send(request);
+            var result = await _mediator.Send(new BookCreateRequest() { BookCreateCommand = book });
 
-            return Ok(response.Id);
+            return Ok(result);
         }
 
         // PUT: api/Books/

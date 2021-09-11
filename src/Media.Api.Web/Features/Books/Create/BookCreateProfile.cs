@@ -12,7 +12,8 @@ namespace Media.Api.Web.Features.Books.Create
     {
         public BookCreateProfile()
         {
-            CreateMap<BookCreateRequest, Book>();
+            CreateMap<BookCreateCommand, Book>();
+            CreateMap<Book, BookCreateResponse>();
         }
     }
 }

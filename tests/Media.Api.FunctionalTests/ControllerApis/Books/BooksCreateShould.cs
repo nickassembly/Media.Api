@@ -27,23 +27,23 @@ namespace Media.Api.FunctionalTests.ControllerApis.Books
         [Fact]
         public async Task ReturnIdOfBookGivenValidBook()
         {
-            var book1 = new Book()
+            var book1 = new BookCreateCommand()
             {
                 Isbn = "111222333",
                 Isbn13 = "22233334444555",
-                Authors = new List<Author> { new Author { FirstName = "Stephen", LastName = "King"} },
+                Authors = new List<Author> { new Author { FirstName = "Stephen", LastName = "King" } },
                 Title = "Test 1 Title",
                 Publisher = "Sanford and Son",
-               // TODO: How to test date times PublishDate, CreatedDate= GetDate(), 
-               ListPrice = 29.94m,
-               MediaType = MediaType.Audiobook
+                // TODO: How to test date times PublishDate, CreatedDate= GetDate(), 
+                ListPrice = 29.94m,
+                MediaType = MediaType.Audiobook
             };
 
             var jsonString = JsonConvert.SerializeObject(book1);
-            var result = await _client.PostAndDeserializeApiResponseResult<BookCreateResponse>($"api/Books/Create", jsonString);
+            var result = await _client.PostAndDeserializeApiResponseResult<BookCreateResponse>($"api/Books/", jsonString);
 
             Assert.NotEqual(0, result.Id);
-            Assert.Equal(book1.Title, result.Book.Title);
+            Assert.Equal(book1.Title, result.Title);
 
         }
 

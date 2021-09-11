@@ -1,5 +1,4 @@
-﻿using Media.Api.Core.ProjectAggregate;
-using Media.Api.Infrastructure.Data;
+﻿using Media.Api.Infrastructure.Data;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,13 +27,6 @@ namespace Media.Api.IntegrationTests.Data
             return builder.Options;
         }
 
-        protected EfRepository<Project> GetRepository()
-        {
-            var options = CreateNewContextOptions();
-            var mockMediator = new Mock<IMediator>();
-
-            _dbContext = new AppDbContext(options, mockMediator.Object);
-            return new EfRepository<Project>(_dbContext);
-        }
+      
     }
 }

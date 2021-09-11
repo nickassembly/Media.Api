@@ -23,18 +23,16 @@ namespace Media.Api.Web.Features.Books.Create
         }
 
         public async Task<BookCreateResponse> Handle(
-            BookCreateRequest request, 
+            BookCreateRequest request,
             CancellationToken cancellationToken)
         {
-            BookCreateResponse response = new();
 
-            var newBook = _mapper.Map<Book>(request);
+            var newBook = _mapper.Map<Book>(request.BookCreateCommand);
 
             var createdNewBook = await _repo.AddAsync(newBook, cancellationToken);
 
-            response.Id = createdNewBook.Id;
+            return _mapper.Map<BookCreateResponse>(createdNewBook);
 
-            return response;
         }
     }
 }
