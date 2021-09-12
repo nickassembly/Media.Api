@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace Media.Api.Web.Middleware
 {
+    // TODO: May be able to remove middleware from Web project if it is in the shared kernal
     public class ApiResponseMiddleware
     {
         private readonly RequestDelegate _next;
