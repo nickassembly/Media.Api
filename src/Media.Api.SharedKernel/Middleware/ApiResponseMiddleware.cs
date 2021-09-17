@@ -1,4 +1,5 @@
 ﻿using Media.Api.SharedKernel.Entities;
+using Media.Api.SharedKernel.Entities.Exceptions;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -86,6 +87,41 @@ namespace Media.Api.SharedKernel.Middleware
 
         private static ApiResponse HandleExceptionAsync(Exception exception)
         {
+            ApiResponse respObj = new((int)HttpStatusCode.BadRequest, null) { IsSuccess = false };
+
+            try
+            {
+                // TODO: Log Error here
+            }
+            catch (Exception)
+            {
+            }
+
+            try
+            {
+                if (exception is ApiResponseExceptionBase)
+                {
+                    var apiException = exception as ApiResponseExceptionBase;
+
+                    respObj.StatusCode = (int)apiException.StatusCode;
+                    respObj.ErrorMessage = apiException.UserFriendlyMessage;
+                }
+                else if (exception is InvalidOperationException)
+                {
+                    respObj.ErrorMessage = exception.Message;
+                }
+                else
+                {
+                    respObj.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    respObj.ErrorMessage = $"Something unexpected happened in the API";
+                }
+            }
+            catch (Exception e)
+            {
+                respObj.ErrorMessage = $"Something unexpected happened in the API - further error while handling exception.";
+            }
+
+            return respObj;
 
         }
 
