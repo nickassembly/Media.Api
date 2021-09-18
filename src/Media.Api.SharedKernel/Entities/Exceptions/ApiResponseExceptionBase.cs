@@ -12,10 +12,7 @@ namespace Media.Api.SharedKernel.Entities.Exceptions
 
         protected ApiResponseExceptionBase(SerializationInfo info, StreamingContext context) : base(info, context) { }
 
-        public ApiResponseExceptionBase(HttpStatusCode statusCode = HttpStatusCode.BadRequest,
-                                         string message = null,
-                                         string userFriendlyMessage = null,
-                                         Exception innerException = null) : base(message, innerException)
+        public ApiResponseExceptionBase(HttpStatusCode statusCode = HttpStatusCode.BadRequest, string message = null, string userFriendlyMessage = null, Exception innerException = null) : base(message, innerException)
         {
             StatusCode = statusCode;
             UserFriendlyMessage = userFriendlyMessage;

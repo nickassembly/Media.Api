@@ -1,4 +1,6 @@
-﻿using Media.Api.Web.Features.Books.Create;
+﻿using Media.Api.Core.BookAggregate;
+using Media.Api.SharedKernel.Interfaces;
+using Media.Api.Web.Features.Books.Create;
 using Media.Api.Web.Features.Books.Delete;
 using Media.Api.Web.Features.Books.GetById;
 using Media.Api.Web.Features.Books.List;
@@ -11,13 +13,16 @@ using System.Threading.Tasks;
 
 namespace Media.Api.Web.Features.Books
 {
+    [Route("api/[controller]/[action]")]
     public class BooksController : BaseApiController
     {
+        private readonly IRepository<Book> _repository;
         private readonly IMediator _mediator;
 
-        public BooksController(IMediator mediator)
+        public BooksController(IMediator mediator, IRepository<Book> repository)
         {
             _mediator = mediator;
+            _repository = repository;
         }
 
         // GET: api/Books/
@@ -35,11 +40,19 @@ namespace Media.Api.Web.Features.Books
         }
 
         // POST: api/Books/Create
+        //[HttpPost]
+        //[SwaggerOperation(
+        //    Summary = "Create a book",
+        //    Description = "Add a new book",
+        //    OperationId = "Books.Create")]
+        //public async Task<IActionResult> Create([FromBody] BookCreateCommand book)
+        //{
+        //    var result = await _mediator.Send(new BookCreateRequest() { BookCreateCommand = book });
+
+        //    return Ok(result);
+        //}
+
         [HttpPost]
-        [SwaggerOperation(
-            Summary = "Create a book",
-            Description = "Add a new book",
-            OperationId = "Books.Create")]
         public async Task<IActionResult> Create([FromBody] BookCreateCommand book)
         {
             var result = await _mediator.Send(new BookCreateRequest() { BookCreateCommand = book });

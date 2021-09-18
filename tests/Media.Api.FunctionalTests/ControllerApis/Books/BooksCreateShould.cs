@@ -40,7 +40,7 @@ namespace Media.Api.FunctionalTests.ControllerApis.Books
             };
 
             var jsonString = JsonConvert.SerializeObject(book1);
-            var result = await _client.PostAndDeserializeApiResponseResult<BookCreateResponse>($"api/Books/", jsonString);
+            var result = await _client.PostAndDeserializeApiResponseResult<BookCreateResponse>($"api/Books/Create", jsonString);
 
             Assert.NotEqual(0, result.Id);
             Assert.Equal(book1.Title, result.Title);

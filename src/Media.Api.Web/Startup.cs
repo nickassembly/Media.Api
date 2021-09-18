@@ -4,6 +4,7 @@ using Ardalis.ListStartupServices;
 using Autofac;
 using Media.Api.Core;
 using Media.Api.Infrastructure;
+using Media.Api.SharedKernel.Middleware;
 using Media.Api.Web.Middleware;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -81,6 +82,8 @@ namespace Media.Api.Web
             }
 
             app.UseRouting();
+
+            app.ConfigureCustomResponseMiddleware();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
