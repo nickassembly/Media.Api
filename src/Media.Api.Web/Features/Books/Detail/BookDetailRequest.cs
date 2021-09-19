@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Media.Api.Web.Features.Books.GetById
 {
-    public class BookGetByIdRequest : IRequest<BookGetByIdResponse>
+    public class BookDetailRequest : IRequest<BookDetailResponse>
     {
         public int Id { get; set; }
     }

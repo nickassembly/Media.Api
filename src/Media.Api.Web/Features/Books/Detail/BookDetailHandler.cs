@@ -7,28 +7,24 @@ using System.Threading.Tasks;
 
 namespace Media.Api.Web.Features.Books.GetById
 {
-    public class BookGetByIdHandler : IRequestHandler<BookGetByIdRequest, BookGetByIdResponse>
+    public class BookDetailHandler : IRequestHandler<BookDetailRequest, BookDetailResponse>
     {
         private readonly IRepository<Book> _repo;
         private readonly IMapper _mapper;
 
-        public BookGetByIdHandler(IRepository<Book> repo, IMapper mapper)
+        public BookDetailHandler(IRepository<Book> repo, IMapper mapper)
         {
             _repo = repo;
             _mapper = mapper;
         }
 
-        public async Task<BookGetByIdResponse> Handle(BookGetByIdRequest request, CancellationToken cancellationToken)
+        public async Task<BookDetailResponse> Handle(BookDetailRequest request, CancellationToken cancellationToken)
         {
-            BookGetByIdResponse response = new();
+           // BookDetailResponse response = new();
 
             var book = await _repo.GetByIdAsync(request.Id, cancellationToken);
 
-            if (book == null) return response;
-
-            response.BookResult = _mapper.Map<BookGetByIdApiModel>(book);
-
-            return response;
+            return _mapper.Map<BookDetailResponse>(book);
         }
     }
 }

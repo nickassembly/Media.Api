@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Media.Api.Core.AuthorAggregate;
+using Media.Api.Core.BookAggregate;
 using Media.Api.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,15 +11,30 @@ namespace Media.Api.Web
 {
     public static class SeedData
     {
+        public static readonly Core.BookAggregate.Book Book1 = new Core.BookAggregate.Book
+        {
+            Title = "It"
+
+        };
+
+        public static readonly Core.BookAggregate.Book Book2 = new Core.BookAggregate.Book
+        {
+            Title = "Jurassic Park"
+        };
+
         public static void Initialize(IServiceProvider serviceProvider)
         {
             using var dbContext = new AppDbContext(
                 serviceProvider.GetRequiredService<DbContextOptions<AppDbContext>>(), null);
+
+            if (dbContext.Books.Any())
+            {
+                return;
+            }
+
             PopulateTestData(dbContext);
         }
 
-        // TODO: Either fix code below and create a seed data class for test data,
-        // or remove once some other testing solution is in place
         public static void PopulateTestData(AppDbContext dbContext)
         {
             if (!dbContext.Books.Any())
@@ -32,20 +50,32 @@ namespace Media.Api.Web
 
         private static void PopulateBookData(AppDbContext dbContext)
         {
-            //var data = BookData.ListTestNewsReleases();
+            foreach (var item in dbContext.Books)
+            {
+                dbContext.Remove(item);
+            }
 
-            //dbContext.Books.AddRange(data);
+            dbContext.SaveChanges();
 
-            //dbContext.SaveChanges();
+            try
+            {
+                var books = new List<Book>
+                {
+                    Book1,
+                    Book2
+                };
+                dbContext.AddRange(books);
+                dbContext.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
         }
 
         public static void PopulateAuthorData(AppDbContext dbContext)
         {
-            //var data = AuthorData.ListTestEvents();
-
-            //dbContext.Authors.AddRange(data);
-
-            //dbContext.SaveChanges();
+            // TODO: Add Author Data
         }
     }
 }
