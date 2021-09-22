@@ -33,20 +33,6 @@ namespace Media.Api.Web.Features.Books
             return Ok(result.Books);
         }
 
-        // GET: api/Books/
-        //[HttpGet]
-        //[SwaggerOperation(
-        //    Summary = "List books",
-        //    Description = "Get a list of books",
-        //    OperationId = "Books.List",
-        //    Tags = new[] {"Books"})]
-        //public async Task<IActionResult> List()
-        //{
-        //    var response = await _mediator.Send(new BookListRequest() { MediaType = null });
-
-        //    return response.Books == null ? NotFound() : Ok(response.Books);
-        //}
-
         [HttpGet("{id}")]
         public async Task<IActionResult> Detail(int id)
         {

@@ -1,13 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Media.Api.Web;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace Media.Api.FunctionalTests.ControllerApis.Books
 {
-    public class BooksUpdateShould
+    [Collection("Sequential")]
+    public class BooksUpdateShould : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-        
+        protected readonly HttpClient _client;
+
+        public BooksUpdateShould(CustomWebApplicationFactory<Startup> factory)
+        {
+            _client = factory.CreateClient();
+        }
+
+        [Fact]
+        public async Task ReturnsNextBookIdGivenBookUpdate()
+        {
+
+        }
     }
 }

@@ -21,7 +21,6 @@ namespace Media.Api.FunctionalTests.ControllerApis.Books
             _client = factory.CreateClient();
         }
 
-        // TODO: Test List, start Update
         [Fact]
         public async Task ReturnBookCollection()
         {
