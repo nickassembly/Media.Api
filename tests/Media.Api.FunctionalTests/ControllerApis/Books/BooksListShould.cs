@@ -1,4 +1,6 @@
-﻿using Media.Api.Web;
+﻿using Media.Api.SharedKernel.Extensions;
+using Media.Api.Web;
+using Media.Api.Web.Features.Books.List;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +21,15 @@ namespace Media.Api.FunctionalTests.ControllerApis.Books
             _client = factory.CreateClient();
         }
 
+        // TODO: Test List, start Update
         [Fact]
         public async Task ReturnBookCollection()
         {
+            var result = await _client.GetAndDeserializeApiResponseResult<IEnumerable<BookListApiModel>>("api/Books/List");
 
+            var sut = Assert.IsAssignableFrom<IEnumerable<BookListApiModel>>(result);
+            Assert.True(sut.Any());
+            Assert.Contains(result, i => i.Title == SeedData.Book1.Title);
         }
     }
 }

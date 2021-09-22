@@ -7,6 +7,7 @@ namespace Media.Api.Web.Features.Books.List
 {
     public class BookListApiModel
     {
+        public int Id { get; set; }
         public string Isbn { get; private set; }
         public string Isbn13 { get; private set; }
         public List<Author> Authors { get; private set; }

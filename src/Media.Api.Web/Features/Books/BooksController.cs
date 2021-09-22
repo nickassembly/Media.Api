@@ -25,19 +25,27 @@ namespace Media.Api.Web.Features.Books
             _repository = repository;
         }
 
-        // GET: api/Books/
         [HttpGet]
-        [SwaggerOperation(
-            Summary = "List books",
-            Description = "Get a list of books",
-            OperationId = "Books.List",
-            Tags = new[] {"Books"})]
         public async Task<IActionResult> List()
         {
-            var response = await _mediator.Send(new BookListRequest() { MediaType = null });
+            var result = await _mediator.Send(new BookListRequest());
 
-            return response.Books == null ? NotFound() : Ok(response.Books);
+            return Ok(result.Books);
         }
+
+        // GET: api/Books/
+        //[HttpGet]
+        //[SwaggerOperation(
+        //    Summary = "List books",
+        //    Description = "Get a list of books",
+        //    OperationId = "Books.List",
+        //    Tags = new[] {"Books"})]
+        //public async Task<IActionResult> List()
+        //{
+        //    var response = await _mediator.Send(new BookListRequest() { MediaType = null });
+
+        //    return response.Books == null ? NotFound() : Ok(response.Books);
+        //}
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Detail(int id)
@@ -46,19 +54,6 @@ namespace Media.Api.Web.Features.Books
 
             return (result != null) ? Ok(result.BookResult) : NotFound($"Searched Id of {id}");
         }
-
-        // GET: api/Books/{id}
-        //[HttpGet("{id}")]
-        //[SwaggerOperation(
-        //    Summary = "Get a book by id",
-        //    Description = "Get the details of a book",
-        //    OperationId = "Books.GetById")]
-        //public async Task<IActionResult> GetById(int id)
-        //{
-        //    var response = await _mediator.Send(new BookGetByIdRequest { Id = id });
-
-        //    return response.BookResult == null ? NotFound() : Ok(response.BookResult);
-        //}
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] BookCreateCommand book)
