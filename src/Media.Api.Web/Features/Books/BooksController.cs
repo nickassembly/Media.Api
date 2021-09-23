@@ -49,18 +49,26 @@ namespace Media.Api.Web.Features.Books
             return Ok(result);
         }
 
-        // PUT: api/Books/
         [HttpPut]
-        [SwaggerOperation(
-            Summary = "Updates an fields in existing book",
-            Description = "Update an a book",
-            OperationId = "Books.Update")]
-        public async Task<IActionResult> Update([FromBody] BookUpdateRequest request)
+        public async Task<IActionResult> Update([FromBody] BookUpdateCommand book)
         {
-            var response = await _mediator.Send(request);
+            var result = await _mediator.Send(new BookUpdateRequest() { BookUpdateCommand = book });
 
-            return response.StatusCode == "NotFound" ? NotFound(response.Id) : Ok(response.Id);
+            return Ok(result);
         }
+
+        // PUT: api/Books/
+        //[HttpPut]
+        //[SwaggerOperation(
+        //    Summary = "Updates an fields in existing book",
+        //    Description = "Update an a book",
+        //    OperationId = "Books.Update")]
+        //public async Task<IActionResult> Update([FromBody] BookUpdateRequest request)
+        //{
+        //    var response = await _mediator.Send(request);
+
+        //    return response.StatusCode == "NotFound" ? NotFound(response.Id) : Ok(response.Id);
+        //}
 
        
 
