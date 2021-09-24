@@ -18,13 +18,12 @@ namespace Media.Api.FunctionalTests.ControllerApis.Books
             _client = factory.CreateClient();
         }
 
-        // TODO: Test Update 
         [Fact]
         public async Task ReturnsNextBookIdGivenBookUpdate()
         {
             var Book1 = new BookUpdateCommand()
             {
-                Id = 3,
+                Id = 1,
                 Title = "Jurassic Park",
                 Isbn = "97811122233"
             };

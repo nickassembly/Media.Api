@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Media.Api.FunctionalTests.ControllerApis.Books
 {
+    // TODO: Refactor and test delete, test whole api and db 
     public class BooksDeleteShould
     {
         
