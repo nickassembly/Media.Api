@@ -1,4 +1,6 @@
-﻿using Media.Api.Core.BookAggregate;
+﻿using AutoMapper;
+using Media.Api.Core.BookAggregate;
+using Media.Api.Core.Exceptions;
 using Media.Api.SharedKernel.Interfaces;
 using MediatR;
 using System.Threading;
@@ -8,27 +10,36 @@ namespace Media.Api.Web.Features.Books.Delete
 {
     public class BookDeleteHandler : IRequestHandler<BookDeleteRequest, BookDeleteResponse>
     {
+        private readonly IMapper _mapper;
         private readonly IRepository<Book> _repo;
 
-        public BookDeleteHandler(IRepository<Book> repo)
+        public BookDeleteHandler(IRepository<Book> repo, IMapper mapper)
         {
             _repo = repo;
+            _mapper = mapper;
         }
 
         public async Task<BookDeleteResponse> Handle(BookDeleteRequest request, CancellationToken cancellationToken)
         {
-            var response = new BookDeleteResponse() { Id = request.Id };
+            var response = new BookDeleteResponse() { Id = request.BookDeleteCommand.Id };
 
-            var bookToBeDeleted = await _repo.GetByIdAsync(request.Id, cancellationToken);
+            try
+            {
+                var deletedBook = await _repo.GetByIdAsync(request.BookDeleteCommand.Id, cancellationToken);
 
-            if (bookToBeDeleted == null)
-                return response;
+                await _repo.DeleteAsync(deletedBook);
 
-            await _repo.DeleteAsync(bookToBeDeleted, cancellationToken);
+                response.IsSuccess = true;
+            }
+            catch (GuardBaseException e)
+            {
+                response.ErrorMessage = e.Message;
+            }
 
-            response.IsSuccess = true;
+            await _repo.SaveChangesAsync(cancellationToken);
 
             return response;
+
         }
     }
 }

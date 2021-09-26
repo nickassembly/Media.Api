@@ -11,7 +11,7 @@ namespace Media.Api.Web.Features.Books.Delete
     {
         public int Id { get; set; }
         public bool IsSuccess { get; set; }
-        public string ToastMessage { get; set; }
+       // public string ToastMessage { get; set; }
         public string ErrorMessage { get; set; }
 
     }

@@ -9,6 +9,6 @@ namespace Media.Api.Web.Features.Books.Delete
 {
     public class BookDeleteRequest : IRequest<BookDeleteResponse>
     {
-        public int Id { get; set; }
+        public BookDeleteCommand BookDeleteCommand { get; set; }
     }
 }

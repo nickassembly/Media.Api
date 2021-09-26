@@ -58,24 +58,6 @@ namespace Media.Api.FunctionalTests.ControllerApis.Books
             Assert.False(result.IsSuccess);
         }
 
-        [Fact]
-        public async Task FailIfBookIsAlreadyDeleted()
-        {
-            var Book1 = new BookDeleteCommand()
-            {
-                Id = 5
-            };
-
-            var jsonString = JsonConvert.SerializeObject(Book1);
-            var bookContent = new StringContent(jsonString.ToString(), Encoding.UTF8, "application/json");
-
-            var response = await _client.PostAsync($"/api/Books/Delete", bookContent);
-
-            var stringResponse = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<BookDeleteResponse>(stringResponse);
-
-            Assert.False(result.IsSuccess);
-        }
 
     }
 }

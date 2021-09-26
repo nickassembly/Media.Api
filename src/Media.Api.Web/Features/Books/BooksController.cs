@@ -57,18 +57,26 @@ namespace Media.Api.Web.Features.Books
             return Ok(result);
         }
 
-        // DELETE: api/Books/{id}
-        [HttpDelete("{id}")]
-        [SwaggerOperation(
-          Summary = "Delete a book",
-            Description = "Remove a book",
-            OperationId = "Books.Delete")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpPost] 
+        public async Task<IActionResult> Delete([FromBody] BookDeleteCommand book)
         {
-            var response = await _mediator.Send(new BookDeleteRequest() { Id = id });
+            var result = await _mediator.Send(new BookDeleteRequest() { BookDeleteCommand = book });
 
-            return !response.IsSuccess ? NotFound() : Ok(response.Id);
+            return Ok(result);
         }
+
+        // DELETE: api/Books/{id}
+        //[HttpDelete("{id}")]
+        //[SwaggerOperation(
+        //  Summary = "Delete a book",
+        //    Description = "Remove a book",
+        //    OperationId = "Books.Delete")]
+        //public async Task<IActionResult> Delete(int id)
+        //{
+        //    var response = await _mediator.Send(new BookDeleteRequest() { Id = id });
+
+        //    return !response.IsSuccess ? NotFound() : Ok(response.Id);
+        //}
 
 
 
